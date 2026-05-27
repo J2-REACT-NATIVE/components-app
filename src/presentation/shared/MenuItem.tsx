@@ -1,0 +1,43 @@
+import { View, Text, Pressable } from 'react-native'
+import React from 'react'
+import { Href, router } from 'expo-router';
+import ThemedText from './ThemedText';
+import { Ionicons } from '@expo/vector-icons';
+import { useThemeColor } from '@/hooks/use-theme-color';
+interface Props {
+    title:string;
+    icon:keyof typeof Ionicons.glyphMap;
+    name:string;
+    isFirst?:boolean;
+    isLast?:boolean;
+}
+const MenuItem = ({title,icon,name,isFirst,isLast}:Props) => {
+    const primaryColor = useThemeColor({}, 'primary');
+  return (
+    <Pressable onPress={
+        ()=> {
+            router.push(name.split('/')[0] as Href)
+        }
+    }
+    style={{
+        ...(isFirst && {
+          borderTopLeftRadius: 10,
+          borderTopRightRadius: 10,
+          paddingTop: 10,
+        }),
+        ...(isLast && {
+          borderBottomLeftRadius: 10,
+          borderBottomRightRadius: 10,
+          paddingBottom: 10,
+        }),
+      }}
+    >
+      <View className="flex-row items-center">
+        <Ionicons name={icon} size={30} color={primaryColor} className="mr-5" />
+        <ThemedText type="h2"> {title} </ThemedText>
+      </View>
+    </Pressable>
+  )
+}
+
+export default MenuItem
