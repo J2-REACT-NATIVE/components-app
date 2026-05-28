@@ -1,11 +1,18 @@
-import { Text, PressableProps } from "react-native";
 import React, { ReactNode } from "react";
-import { Pressable } from "react-native";
+import { PressableProps, Text } from "react-native";
+//import { Pressable } from "react-native-gesture-handler";
 
+//! si uso Pressable de react-native se usa interface
+import { Pressable } from "react-native";
 interface Props extends PressableProps {
   className?: string;
   children: string;
 }
+
+// type Props = React.ComponentProps<typeof Pressable> & {
+//   className?: string;
+//   children: string;
+// };
 
 const ThemedButton = ({ className, children, ...rest }: Props) => {
   return (

@@ -1,13 +1,49 @@
-import { View, Text } from 'react-native';
+import { View, Text, Animated, Easing } from 'react-native';
 import ThemedButton from '../../presentation/shared/ThemedButton';
+import ThemedView from '@/presentation/shared/ThemedView';
+import { useAnimation } from '@/hooks/UseAnimation';
 
 const Animation101Screen = () => {
+  const {
+    animatedOpacity,
+    animatedTop,
+    fadeIn,
+    fadeOut,
+    startMovingTopPosition,
+  } = useAnimation();
   return (
-    <View>
+    <ThemedView margin  className="justify-center items-center flex-1">
+      <Animated.View
+        className="bg-light-secondary dark:bg-dark-secondary rounded-xl"
+        style={{
+          width: 150,
+          height: 150,
+          opacity: animatedOpacity, //animatedOpacity
+          transform: [
+            {
+              translateY: animatedTop,
+            },
+          ],
+        }}
+      />
       <Text>Animation101Screen</Text>
-      <ThemedButton className="my-5" onPress={()=>console.log("Fade In") }>FadeIn</ThemedButton>
-      <ThemedButton className="my-5" onPress={()=>console.log("Fade out") }>FadeIn</ThemedButton>
-    </View>
+      <ThemedButton
+        className="my-5"
+        onPress={() => {
+          fadeIn({});
+          startMovingTopPosition({
+            easing: Easing.bounce,
+            duration: 700,
+          });
+        }}
+      >
+        FadeIn
+      </ThemedButton>
+
+      <ThemedButton className="my-5" onPress={() => fadeOut({})}>
+        FadeOut
+      </ThemedButton>
+    </ThemedView>
   );
 };
 export default Animation101Screen;
