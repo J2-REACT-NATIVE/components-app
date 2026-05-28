@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 
 import ThemedView from "@/presentation/shared/ThemedView";
-import { animationMenuRoutes, uiMenuRoutes } from "@/constants/Routes";
+import { animationMenuRoutes, uiMenuRoutes,menuRoutes } from "@/constants/Routes";
 import MenuItem from "@/presentation/shared/MenuItem";
 
 const Index = () => {
@@ -32,7 +32,7 @@ const Index = () => {
         />
       ))}
       <View className="my-3" />
-      {animationMenuRoutes.map((route, ix) => (
+      {menuRoutes.map((route, ix) => (
         // <Link key={ix} href={route.name.split("/")[0] as Href} >{route.title}</Link>
         <MenuItem
           key={ix}
@@ -40,7 +40,7 @@ const Index = () => {
           icon={route.icon}
           name={route.name}
           isFirst={ix === 0}
-          isLast={ix === animationMenuRoutes.length - 1}
+          isLast={ix === menuRoutes.length - 1}
         />
       ))}
     </ThemedView>
