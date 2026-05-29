@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, ScrollView, RefreshControl } from 'react-native';
+import { ScrollView, RefreshControl } from 'react-native';
 import ThemedText from '@/presentation/shared/ThemedText';
 import ThemedView from '@/presentation/shared/ThemedView';
 import { useThemeColor } from '@/hooks/use-theme-color';
@@ -17,9 +17,9 @@ const PullToRefreshScreen = () => {
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  const onRefresh = async () => {
+  const onRefresh = () => {
     setIsRefreshing(true);
-
+    console.log("refrescando...")
     setTimeout(() => {
       setIsRefreshing(false);
     }, 3000);
@@ -27,10 +27,14 @@ const PullToRefreshScreen = () => {
 
   return (
     <ScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={{ flexGrow: 1 }}
+      alwaysBounceVertical
       refreshControl={
         <RefreshControl
           refreshing={isRefreshing}
           onRefresh={onRefresh}
+          tintColor={primaryColor}
           colors={[primaryColor, 'red', 'orange', 'green']}
           progressBackgroundColor={backgroundColor}
         />

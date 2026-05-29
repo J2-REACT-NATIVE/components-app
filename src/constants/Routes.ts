@@ -19,7 +19,9 @@ export const menuRoutes:MenuRoute[] = [
   {
     title: "Modal",
     icon: "copy-outline",
-    name: "modal/index",
+    //name: "modal/index",
+    //! se va a cargar el _layout.tsx
+    name: "modal",
   },
   {
     title: "InfiniteScroll",
